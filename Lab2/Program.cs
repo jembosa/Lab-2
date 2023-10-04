@@ -8,12 +8,11 @@ namespace Lab2
         static void Main(string[] args)
         {
             string stoploop = "";
-            int answer = 0;
+            var answer = 0;
 
             Console.WriteLine("Hello, what is your name?");
 
             string name = Console.ReadLine();
-
             
             while (stoploop == "")
             {
@@ -21,16 +20,25 @@ namespace Lab2
 
                 while (true)
                 {
-                    answer = int.Parse(Console.ReadLine());
-
-                    if (answer <= 0 || answer > 100)
-                    {
-                        Console.WriteLine($"{name}, it clearly says between 1 and 100 dude. Please enter a number between 1 and 100.");
-                    }
-                    else
+                    var temp = "";
+                    temp = Console.ReadLine();
+                    if (temp == "")
                     {                        
-                        break;
+                        answer = 0;
+                        temp = "0";
                     }
+                        answer = Convert.ToInt32(temp);
+                    
+                    
+                        if (answer <= 0 || answer > 100)
+                        {
+                            Console.WriteLine($"{name}, it clearly says between 1 and 100 dude. Please enter a number between 1 and 100.");
+                        }
+                        else
+                        {
+                            break;
+                        }                                          
+                    
                 }
                 //odd
                 if (answer % 2 != 0)
@@ -50,7 +58,7 @@ namespace Lab2
                     {
                         Console.WriteLine($"{name}, your number is {answer}, even, and less than 25");
                     }
-                    else if (answer < 60 && answer > 0)
+                    else if (answer <= 60 && answer > 0)
                     { Console.WriteLine($"{name}, your number is {answer}, even, and between 24 and 60 inclusively"); }
 
                     else if (answer > 60)
@@ -60,7 +68,7 @@ namespace Lab2
                     }
 
                 //ask to stop here
-                Console.WriteLine("Enter 'stop' to exit.");
+                Console.WriteLine("Type 'stop' to exit or press 'Enter' to try again.");
                 string userInput = Console.ReadLine();
                 if (userInput.ToLower() == "stop")
                 {
